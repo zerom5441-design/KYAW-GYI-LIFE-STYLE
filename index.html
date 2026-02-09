@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <title>KYAW-GYI-LIFE-STYLE</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+      background: #fff;
+      color: #222;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.8;
+    }
+    h1 {
+      text-align: center;
+    }
+    .story {
+      white-space: pre-wrap;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>KYAW-GYI-LIFE-STYLE</h1>
+  <div id="content">Loading…</div>
+
+  <script>
+    fetch('stories.json')
+      .then(res => res.json())
+      .then(data => {
+        const story = data[0];
+        document.getElementById('content').innerHTML =
+          `<h2>${story.title}</h2>
+           <p><em>${story.author}</em></p>
+           <div class="story">${story.content}</div>`;
+      })
+      .catch(() => {
+        document.getElementById('content').innerText =
+          'Story မဖတ်နိုင်သေးပါ…';
+      });
+  </script>
+</body>
+</html>
